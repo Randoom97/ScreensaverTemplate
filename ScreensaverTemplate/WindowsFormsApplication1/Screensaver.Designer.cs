@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Form1
+    partial class Screensaver
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Screensaver
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "Screensaver";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Screensaver_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Screensaver_KeyPress);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Screensaver_MouseClick);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Screensaver_MouseMove);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
