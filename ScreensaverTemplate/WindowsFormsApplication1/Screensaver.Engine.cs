@@ -11,6 +11,16 @@ namespace WindowsFormsApplication1
         private double internalScale = 1.0;
 
         /// <summary>
+        /// Allows you to add fields to the settings form.
+        /// You must first set the registry sub key.
+        /// I recomend the name of the screensaver.
+        /// </summary>
+        public static void SetFields()
+        {
+
+        }
+
+        /// <summary>
         /// Allows you to set up any needed variables before any rendering is done.
         /// </summary>
         private void Setup()
