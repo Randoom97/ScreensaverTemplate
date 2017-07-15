@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -34,10 +30,13 @@ namespace WindowsFormsApplication1
 
         private Graphics g;
 
+        private Task task;
+
+        private long startms;
+        private int msDelta;
+
         private Bitmap image;
         private Graphics imgGrphx;
-
-        private System.Timers.Timer timer;
 
         private Point mouseLocation;
 
@@ -82,9 +81,19 @@ namespace WindowsFormsApplication1
             //Letting the user set up what they need on startup
             Setup();
 
-            timer = new System.Timers.Timer(1000/fps);
-            timer.Elapsed += (sender1, e1) => { Tick(); Invalidate(); };
-            timer.Start();
+            //Setting up the main thread
+            msDelta = 1000 / fps;
+            task = new Task(() => {
+                while (true)
+                {
+                    startms = Environment.TickCount;
+                    Tick();
+                    Invalidate();
+                    //Dynamic sleep based on previous render time
+                    Thread.Sleep(Math.Max(msDelta - (int) (Environment.TickCount - startms),0));
+                }
+            });
+            task.Start();
         }
 
         private void Screensaver_MouseMove(object sender, MouseEventArgs e)
@@ -129,7 +138,6 @@ namespace WindowsFormsApplication1
 
         private void stop()
         {
-            timer.Dispose();
             Application.Exit();
         }
 
