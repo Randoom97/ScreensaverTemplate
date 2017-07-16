@@ -6,9 +6,6 @@ namespace WindowsFormsApplication1
     {
         //Determines the target frames per second
         private int fps = 60;
-        // Determines the size of the internal bitmap to render to.
-        // 0.5 would be half the size of the actual window.
-        private double internalScale = 1.0;
 
         /// <summary>
         /// Allows you to add fields to the settings form.
@@ -19,7 +16,7 @@ namespace WindowsFormsApplication1
         {
 
         }
-
+        
         /// <summary>
         /// Allows you to set up any needed variables before any rendering is done.
         /// </summary>
@@ -43,7 +40,7 @@ namespace WindowsFormsApplication1
         /// <param name="g">Graphics object for drawing</param>
         /// <param name="width">Width of the drawing space</param>
         /// <param name="height">Height of the drawing space</param>
-        private void Render(Graphics g, int width, int height)
+        private void Render(Graphics g)
         {
 
         }

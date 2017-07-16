@@ -35,9 +35,6 @@ namespace WindowsFormsApplication1
         private long startms;
         private int msDelta;
 
-        private Bitmap image;
-        private Graphics imgGrphx;
-
         private Point mouseLocation;
 
         public Screensaver()
@@ -71,10 +68,6 @@ namespace WindowsFormsApplication1
 
         private void Screensaver_Load(object sender, EventArgs e)
         {
-            image = new Bitmap((int)(Width * internalScale), (int)(Height * internalScale));
-            imgGrphx = Graphics.FromImage(image);
-            imgGrphx.SmoothingMode = SmoothingMode.AntiAlias;
-
             Cursor.Hide();
             TopMost = true;
 
@@ -132,8 +125,8 @@ namespace WindowsFormsApplication1
         protected override void OnPaint(PaintEventArgs e)
         {
             g = e.Graphics;
-            Render(imgGrphx, image.Width, image.Height);
-            g.DrawImage(image, 0, 0, Width, Height);
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            Render(e.Graphics);
         }
 
         private void stop()
